@@ -5,13 +5,23 @@ resilience4j:
         failureRateThreshold: 50
         minimumNumberOfCalls: 5
         slidingWindowSize: 10
-        waitDurationInOpenState: 5000ms
+        waitDurationInOpenState: 5s
         permittedNumberOfCallsInHalfOpenState: 3
         automaticTransitionFromOpenToHalfOpenEnabled: true
+
 spring:
+  application:
+    name: MovieCatalog-Service
   profiles:
-    active:
-    - dev				
+    active: 
+      - dev
+
 server:
   port: 9080
-			
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true
